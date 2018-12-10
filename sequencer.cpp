@@ -1,10 +1,11 @@
 #include "sequencer.h"
 
-Sequencer::Sequencer()
+Sequencer::Sequencer(callBack noteOn)
 {
+    noteOnFunction = noteOn;
 }
 
-int Sequencer::getSum(int gx, int gy)
+void Sequencer::tick()
 {
-  return gx + gy;
+    noteOnFunction();
 }

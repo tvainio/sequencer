@@ -2,9 +2,16 @@
 #include "sequencer.h"
 #include <gtest/gtest.h> 
 
-TEST(dummyTest, whatever) {
-    Sequencer s;
-    ASSERT_EQ(1, s.getSum(0,1));
+int called = 0;
+void cb()
+{
+    called++;
+}
+
+TEST(sequencer, callsNoteOn) {
+    Sequencer s(&cb);
+    s.tick();
+    ASSERT_EQ(1, called);
 }
  
 int main(int argc, char **argv) {

@@ -2,12 +2,17 @@
 #ifndef SEQUENCER_H
 #define SEQUENCER_H
 
+typedef void (*callBack)(void);
+
 class Sequencer
 {
 
+private:
+    callBack noteOnFunction;
+    
 public:
-  Sequencer();
-  int getSum(int gx, int gy);
+  Sequencer(callBack noteOn);
+  void tick();
 
 };
 
