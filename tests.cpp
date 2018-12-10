@@ -8,8 +8,21 @@ void cb()
     called++;
 }
 
-TEST(sequencer, callsNoteOn) {
+TEST(sequencer, doesntCallNoteOn) {
+    called=0;
     Sequencer s(&cb);
+    s.tick();
+    ASSERT_EQ(0, called);
+}
+
+TEST(sequencer, callsNoteOnForEnabledSteps) {
+    called=0;
+    Sequencer s(&cb);
+    s.set(1, true);
+    s.tick();
+    ASSERT_EQ(0, called);
+    s.tick();
+    ASSERT_EQ(1, called);
     s.tick();
     ASSERT_EQ(1, called);
 }

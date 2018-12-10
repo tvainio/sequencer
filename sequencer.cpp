@@ -3,9 +3,17 @@
 Sequencer::Sequencer(callBack noteOn)
 {
     noteOnFunction = noteOn;
+
+}
+void Sequencer::set(int step, bool status)
+{
+    stepState[step] = status;
 }
 
 void Sequencer::tick()
 {
-    noteOnFunction();
+    if (stepState[currentStep]) {
+	noteOnFunction();
+    }
+    currentStep++;
 }
