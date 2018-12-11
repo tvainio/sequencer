@@ -10,14 +10,14 @@ void cb()
 
 TEST(sequencer, doesntCallNoteOn) {
     called=0;
-    Sequencer s(&cb);
+    Sequencer s(4, &cb);
     s.tick();
     ASSERT_EQ(0, called);
 }
 
 TEST(sequencer, callsNoteOnForEnabledSteps) {
     called=0;
-    Sequencer s(&cb);
+    Sequencer s(4, &cb);
     s.set(1, true);
     s.tick();
     ASSERT_EQ(0, called);
@@ -29,7 +29,7 @@ TEST(sequencer, callsNoteOnForEnabledSteps) {
 
 TEST(sequencer, wrapsAround) {
     called=0;
-    Sequencer s(&cb);
+    Sequencer s(4, &cb);
     s.set(0, true);
     s.tick();
     ASSERT_EQ(1, called);
@@ -41,6 +41,22 @@ TEST(sequencer, wrapsAround) {
     ASSERT_EQ(1, called);
     s.tick();
     ASSERT_EQ(2, called);
+
+}
+TEST(sequencer, wrapsAroundAfterSteps) {
+    called=0;
+    Sequencer s(2, &cb);
+    s.set(0, true);
+    s.tick();
+    ASSERT_EQ(1, called);
+    s.tick();
+    ASSERT_EQ(1, called);
+    s.tick();
+    ASSERT_EQ(2, called);
+    s.tick();
+    ASSERT_EQ(2, called);
+    s.tick();
+    ASSERT_EQ(3, called);
 
 }
  

@@ -1,13 +1,14 @@
 #include "sequencer.h"
 
-Sequencer::Sequencer(callBack noteOn)
+Sequencer::Sequencer(int steps, callBack noteOn)
 {
-    noteOnFunction = noteOn;
+    this->steps = steps;
+    this->noteOnFunction = noteOn;
 
 }
 void Sequencer::set(int step, bool status)
 {
-    stepState[step] = status;
+    this->stepState[step] = status;
 }
 
 void Sequencer::tick()
@@ -16,5 +17,5 @@ void Sequencer::tick()
 	noteOnFunction();
     }
     currentStep++;
-    currentStep %= STEPS;
+    currentStep %= steps;
 }
