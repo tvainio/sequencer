@@ -16,4 +16,5 @@ void Sequencer::tick()
 	noteOnFunction();
     }
     currentStep++;
+    currentStep %= STEPS;
 }

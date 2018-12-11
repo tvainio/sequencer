@@ -26,6 +26,23 @@ TEST(sequencer, callsNoteOnForEnabledSteps) {
     s.tick();
     ASSERT_EQ(1, called);
 }
+
+TEST(sequencer, wrapsAround) {
+    called=0;
+    Sequencer s(&cb);
+    s.set(0, true);
+    s.tick();
+    ASSERT_EQ(1, called);
+    s.tick();
+    ASSERT_EQ(1, called);
+    s.tick();
+    ASSERT_EQ(1, called);
+    s.tick();
+    ASSERT_EQ(1, called);
+    s.tick();
+    ASSERT_EQ(2, called);
+
+}
  
 int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);
