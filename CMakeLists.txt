@@ -2,7 +2,7 @@ cmake_minimum_required (VERSION 2.6)
 project (Sequencer)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-#add_executable(Sequencer sequencer.cpp)
+add_library(sequencer sequencer.cpp)
 
 # Locate GTest
 find_package(GTest REQUIRED)
