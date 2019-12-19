@@ -2,20 +2,31 @@
 
 Sequencer::Sequencer(int steps, callBack noteOn)
 {
+    this->currentStep = steps - 1;
     this->steps = steps;
     this->noteOnFunction = noteOn;
-
 }
-void Sequencer::set(int step, bool status)
+void Sequencer::setStep(int step, bool status)
 {
     this->stepState[step] = status;
 }
 
+bool Sequencer::getStep(int step)
+{
+    return this->stepState[step];
+}
+
+int Sequencer::getCurrentStep()
+{
+    return this->currentStep;
+}
+
 void Sequencer::tick()
 {
-    if (stepState[currentStep]) {
-	noteOnFunction();
-    }
     currentStep++;
     currentStep %= steps;
+    if (stepState[currentStep])
+    {
+        noteOnFunction();
+    }
 }

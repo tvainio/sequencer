@@ -14,12 +14,15 @@ private:
   bool stepState[MAX_STEPS] = {false};
   int currentStep = 0;
   int steps = MAX_STEPS;
-  
+
 public:
   Sequencer(int steps, callBack noteOn);
-  void set(int step, bool status);
-  void tick();
+  void setStep(int step, bool status);
+  bool getStep(int step);
+  int getCurrentStep();
+  inline bool getCurrentStepState() { return this->getStep(this->getCurrentStep()); }
 
+  void tick();
 };
 
 #endif
