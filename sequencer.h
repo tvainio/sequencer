@@ -1,8 +1,7 @@
 // SEQUENCER.h
 #ifndef SEQUENCER_H
 #define SEQUENCER_H
-
-#define MAX_STEPS 16
+#include <vector>
 
 typedef void (*callBack)(void);
 
@@ -11,9 +10,9 @@ class Sequencer
 
 private:
   callBack noteOnFunction;
-  bool stepState[MAX_STEPS] = {false};
+  std::vector<bool> stepState;
   int currentStep = 0;
-  int steps = MAX_STEPS;
+  int steps;
 
 public:
   Sequencer(int steps, callBack noteOn);

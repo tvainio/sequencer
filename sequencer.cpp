@@ -1,11 +1,12 @@
 #include "sequencer.h"
 
-Sequencer::Sequencer(int steps, callBack noteOn)
+Sequencer::Sequencer(int steps, callBack noteOn) : stepState(steps, false),
+                                                   steps(steps),
+                                                   currentStep(steps - 1),
+                                                   noteOnFunction(noteOn)
 {
-    this->currentStep = steps - 1;
-    this->steps = steps;
-    this->noteOnFunction = noteOn;
 }
+
 void Sequencer::setStep(int step, bool status)
 {
     this->stepState[step] = status;
