@@ -18,6 +18,7 @@ public:
   Sequencer(int steps, callBack noteOn);
   void setStep(int step, bool status);
   bool getStep(int step);
+  inline std::vector<bool> get() { return stepState; };
   int getCurrentStep();
   inline bool getCurrentStepState() { return this->getStep(this->getCurrentStep()); }
 
