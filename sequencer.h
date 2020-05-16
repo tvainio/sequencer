@@ -20,6 +20,7 @@ public:
   void setStep(int step, bool status);
   bool getStep(int step);
   int getCurrentStep();
+  inline bool *get() { return stepState; };
   inline bool getCurrentStepState() { return this->getStep(this->getCurrentStep()); }
 
   void tick();
